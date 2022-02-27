@@ -1,2 +1,2 @@
 # faceMaskInspector
-This is a face mask recognition using machine learning techniques using Supervised learning, CNN and transfer learning .
+This is a face mask recognition using machine learning techniques using Supervised learning, CNN and Sequential learning .
