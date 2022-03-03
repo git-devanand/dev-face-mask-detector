@@ -10,8 +10,7 @@ import cv2
 import os
 
 def detect_and_predict_mask(frame, faceNet, maskNet):
-	# grab the dimensions of the frame and then construct a blob
-	# from it
+	# grab the dimensions of the frame and then construct a blob from it
 	(h, w) = frame.shape[:2]
 	blob = cv2.dnn.blobFromImage(frame, 1.0, (224, 224),
 		(104.0, 177.0, 123.0))
@@ -29,8 +28,7 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 
 	# loop over the detections
 	for i in range(0, detections.shape[2]):
-		# extract the confidence (i.e., probability) associated with
-		# the detection
+		# extract the confidence (i.e., probability) associated with the detection
 		confidence = detections[0, 0, i, 2]
 
 		# filter out weak detections by ensuring the confidence is
@@ -67,8 +65,7 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 		faces = np.array(faces, dtype="float32")
 		preds = maskNet.predict(faces, batch_size=32)
 
-	# return a 2-tuple of the face locations and their corresponding
-	# locations
+	# return a 2-tuple of the face locations and their corresponding locations
 	return (locs, preds)
 
 # load our serialized face detector model from disk
@@ -109,8 +106,7 @@ while True:
 		# include the probability in the label
 		label = "{}: {:.2f}%".format(label, max(mask, withoutMask) * 100)
 
-		# display the label and bounding box rectangle on the output
-		# frame
+		# display the label and bounding box rectangle on the output frame
 		cv2.putText(frame, label, (startX, startY - 10),
 			cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
 		cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
